@@ -2,6 +2,7 @@ package com.example.BackendCrud.UserProduct.management.system.controllers;
 
 import com.example.BackendCrud.UserProduct.management.system.entities.Product;
 import com.example.BackendCrud.UserProduct.management.system.entities.User;
+import com.example.BackendCrud.UserProduct.management.system.services.MailingService;
 import com.example.BackendCrud.UserProduct.management.system.services.ProductService;
 import com.example.BackendCrud.UserProduct.management.system.services.UserService;
 import jakarta.persistence.EntityManager;
@@ -18,14 +19,15 @@ import java.util.Map;
 @RestController
 public class ProductController {
 
-
+    final private MailingService mailingService;
     final private ProductService productService;
     final private UserService userService;
 
     //trying to think of better way
     final private EntityManager entityManager;
 
-    public ProductController(ProductService productService, UserService userService, EntityManager entityManager) {
+    public ProductController(MailingService mailingService, ProductService productService, UserService userService, EntityManager entityManager) {
+        this.mailingService = mailingService;
         this.productService = productService;
         this.userService = userService;
         this.entityManager = entityManager;
@@ -60,5 +62,6 @@ public class ProductController {
 
         entityManager.getTransaction().commit();
         entityManager.close();
+        MailingService.sendTransactionEmail(product, user);
     }
 }
