@@ -6,6 +6,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@NamedQueries(
+        @NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p")
+)
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
