@@ -6,8 +6,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@NamedQueries(
+@NamedQueries({
         @NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p")
+        ,@NamedQuery(name = "findProductById", query = "SELECT p FROM Product p WHERE p.id = :id")
+}
 )
 public class Product {
     @Id

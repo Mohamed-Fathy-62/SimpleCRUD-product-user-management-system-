@@ -16,7 +16,7 @@ public class ProductService {
         this.em = em;
     }
 
-    public List<Product> getListOfProducts(){
+    public List<Product> findListOfProducts(){
         em.getTransaction().begin();
         TypedQuery<Product> q = em.createNamedQuery("findAllProducts", Product.class);
         List<Product> list = q.getResultList();
@@ -24,5 +24,11 @@ public class ProductService {
 
         em.close();
         return list;
+    }
+
+    public Product findProductById(String productId){
+        TypedQuery<Product> q = em.createNamedQuery("findProductById", Product.class);
+        q.setParameter("id", productId);
+        return q.getSingleResult();
     }
 }

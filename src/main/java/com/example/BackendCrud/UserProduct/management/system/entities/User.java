@@ -6,6 +6,17 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "findUserById"
+                , query = "SELECT u FROM User u WHERE u.id = :id"
+        ),
+        @NamedQuery(
+                name = "findUserByUsername"
+                , query = "SELECT u FROM User u WHERE u.name = :username"
+        )
+}
+)
 public class User {
 
     @Id

@@ -1,0 +1,4 @@
+http://localhost:8080/products/all
+-> to print all products in DB
+http://localhost:8080/products/buy/uid=1/pid=1
+-> to make user with id 1 buy product with id 1 and subtract the price from user credit
